@@ -1,0 +1,182 @@
+@import "tailwindcss";
+
+@theme {
+  /* Deep blue palette */
+  --color-deep-blue-50: #eef2ff;
+  --color-deep-blue-100: #dbe4ff;
+  --color-deep-blue-200: #bac8ff;
+  --color-deep-blue-300: #91a7ff;
+  --color-deep-blue-400: #748ffc;
+  --color-deep-blue-500: #4c6ef5;
+  --color-deep-blue-600: #3b5bdb;
+  --color-deep-blue-700: #2b44a8;
+  --color-deep-blue-800: #1e3a8a;
+  --color-deep-blue-900: #0f1d42;
+  --color-deep-blue-950: #0a1128;
+
+  /* Lilac palette */
+  --color-lila-50: #f8f0fc;
+  --color-lila-100: #f3d9fa;
+  --color-lila-200: #eebefa;
+  --color-lila-300: #e599f7;
+  --color-lila-400: #da77f2;
+  --color-lila-500: #cc5de8;
+  --color-lila-600: #be4bdb;
+  --color-lila-700: #ae3ec9;
+  --color-lila-800: #9c36b5;
+  --color-lila-900: #862e9c;
+
+  /* Glass colors */
+  --color-glass-white: rgba(255, 255, 255, 0.08);
+  --color-glass-white-hover: rgba(255, 255, 255, 0.14);
+  --color-glass-border: rgba(255, 255, 255, 0.12);
+
+  /* Typography */
+  --font-family-sans: 'Outfit', system-ui, -apple-system, sans-serif;
+}
+
+/* Base styles */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  background: linear-gradient(135deg, #0a1128 0%, #1e3a8a 40%, #2b44a8 60%, #1a1a3e 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Glass utility classes */
+.glass {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(204, 93, 232, 0.3);
+  color: #ffffff;
+}
+
+/* Glass variants */
+.glass-strong {
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glass-subtle {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Gradient text utility */
+.text-gradient-romantic {
+  background: linear-gradient(135deg, #ffffff 0%, #eebefa 40%, #da77f2 70%, #748ffc 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle glow animation */
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(204, 93, 232, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(204, 93, 232, 0.25);
+  }
+}
+
+.glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Fade in up animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Smooth section transitions */
+section {
+  position: relative;
+}
+
+/* Responsive text utilities */
+@media (max-width: 640px) {
+  .text-hero {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+}
+
+/* Loading spinner for lazy routes */
+@keyframes route-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

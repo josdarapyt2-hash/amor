@@ -1,0 +1,17 @@
+{
+  "name": "Nuestro Aniversario",
+  "short_name": "Aniversario",
+  "description": "Un regalo de aniversario especial, hecho con amor.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a1128",
+  "theme_color": "#0a1128",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
