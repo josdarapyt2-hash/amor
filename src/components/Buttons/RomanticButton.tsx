@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
 
@@ -6,36 +7,41 @@ interface RomanticButtonProps {
   onClick?: () => void
   href?: string
   variant?: 'primary' | 'secondary'
+  size?: 'sm' | 'md' | 'lg'
+  disabled?: boolean
+  className?: string
 }
 
-export default function RomanticButton({
+function RomanticButtonInner({
   children,
   onClick,
   href,
   variant = 'primary',
+  size = 'md',
+  disabled = false,
+  className = '',
 }: RomanticButtonProps) {
-  const baseClasses =
-    'relative inline-flex items-center gap-2 px-8 py-3 rounded-full font-medium text-sm tracking-wider transition-all duration-300 cursor-pointer overflow-hidden'
-
-  const variantClasses =
-    variant === 'primary'
-      ? 'bg-gradient-to-r from-lila-500 to-deep-blue-500 text-white shadow-[0_0_30px_rgba(204,93,232,0.3)]'
-      : 'glass glass-hover text-white/90'
+  const sizeClass =
+    size === 'sm' ? 'btn-sm' : size === 'lg' ? 'btn-lg' : 'btn-md'
+  const variantClass = variant === 'primary' ? 'btn-primary' : 'btn-secondary'
+  const classes = `btn ${variantClass} ${sizeClass} ${className}`
 
   const Tag = href ? motion.a : motion.button
-  const extraProps = href ? { href } : { onClick }
+  const extraProps = href ? { href } : { onClick, disabled }
 
   return (
     <Tag
-      className={`${baseClasses} ${variantClasses}`}
-      whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(204,93,232,0.4)' }}
-      whileTap={{ scale: 0.97 }}
+      className={classes}
+      whileHover={disabled ? undefined : { scale: 1.04 }}
+      whileTap={disabled ? undefined : { scale: 0.97 }}
       transition={{ type: 'spring', stiffness: 400, damping: 20 }}
       {...extraProps}
     >
-      <span className="absolute inset-0 bg-white/10 opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-full" />
-      <Heart className="w-4 h-4" fill="currentColor" strokeWidth={0} />
-      <span className="relative z-10">{children}</span>
+      <Heart className="w-3.5 h-3.5" fill="currentColor" strokeWidth={0} aria-hidden="true" />
+      <span>{children}</span>
     </Tag>
   )
 }
+
+const RomanticButton = memo(RomanticButtonInner)
+export default RomanticButton

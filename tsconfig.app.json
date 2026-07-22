@@ -19,10 +19,13 @@
       "@/*": ["./src/*"]
     },
 
+    "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src"]
 }

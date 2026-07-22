@@ -4,11 +4,11 @@ import { Music } from 'lucide-react'
 
 const AUDIO_SRC = '/audio/cancion.mp3'
 
-export default function MusicPlayer({
-  position = 'bottom-right',
-}: {
-  position?: 'bottom-right' | 'top-right'
-}) {
+interface MusicPlayerProps {
+  position?: 'bottom-right' | 'top-right' | 'relative'
+}
+
+export default function MusicPlayer({ position = 'bottom-right' }: MusicPlayerProps) {
   const [hasError, setHasError] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
@@ -40,20 +40,21 @@ export default function MusicPlayer({
   if (hasError) return null
 
   const positionClasses =
-    position === 'top-right'
-      ? 'fixed top-6 right-6 z-40'
-      : 'fixed bottom-6 right-6 z-40'
+    position === 'relative'
+      ? 'relative z-auto'
+      : position === 'top-right'
+        ? 'fixed bottom-6 left-1/2 -translate-x-1/2 z-40'
+        : 'fixed bottom-6 left-1/2 -translate-x-1/2 z-40'
 
   return (
     <motion.button
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
       onClick={handlePlay}
-      className={`${positionClasses} flex items-center gap-2 px-4 py-2.5 rounded-full glass text-lila-400 hover:text-white hover:bg-white/10 transition-all duration-300 cursor-pointer`}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      title="Reproducir música"
+      className={`${positionClasses} btn btn-secondary btn-md`}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 0.97 }}
       aria-label="Reproducir música"
     >
       <Music className="w-4 h-4" />

@@ -12,8 +12,6 @@ import GalleryGrid from '@/components/Gallery/GalleryGrid'
 import BackToTop from '@/components/Navigation/BackToTop'
 import { staggerContainer, fadeInUp } from '@/animations/variants'
 
-// Coloca tus imágenes en: public/images/gallery/
-// Nombres esperados: foto-1.jpg, foto-2.jpg, foto-3.jpg, foto-4.jpg, foto-5.jpg, foto-6.jpg
 const galleryImages = [
   {
     src: '/images/gallery/foto-1.jpg',
@@ -53,12 +51,12 @@ export default function Gallery() {
       <MusicPlayer />
 
       <div className="relative z-10 min-h-screen">
-        <div className="px-6 py-10 md:py-16 max-w-6xl mx-auto">
+        <div className="px-5 sm:px-8 py-10 sm:py-14 md:py-16 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-12"
+            className="mb-10 sm:mb-14 text-center sm:text-left"
           >
             <RomanticButton href="/" variant="secondary">
               <ArrowLeft className="w-4 h-4" />
@@ -70,15 +68,15 @@ export default function Gallery() {
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="text-center mb-16"
+            className="text-center mb-14 sm:mb-16"
           >
             <motion.div variants={fadeInUp}>
-              <Camera className="w-8 h-8 text-lila-400/60 mx-auto mb-5" />
+              <Camera className="w-7 h-7 sm:w-8 sm:h-8 text-lila-400/60 mx-auto mb-4 sm:mb-5" />
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-4"
             >
               <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
                 Nuestra Galería
@@ -87,7 +85,7 @@ export default function Gallery() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-white/40 font-light max-w-lg mx-auto leading-relaxed"
+              className="text-xs sm:text-sm md:text-base text-white/40 font-light max-w-lg mx-auto leading-relaxed px-4"
             >
               Un recorrido visual por nuestros momentos más especiales.
               Cada imagen cuenta una parte de nuestra historia.
@@ -95,14 +93,14 @@ export default function Gallery() {
 
             <motion.div
               variants={fadeInUp}
-              className="flex items-center justify-center gap-2 mt-6"
+              className="flex items-center justify-center gap-2 mt-5 sm:mt-6"
             >
               <Heart
                 className="w-3 h-3 text-lila-400/40"
                 fill="currentColor"
                 strokeWidth={0}
               />
-              <span className="text-xs text-white/25 font-light tracking-widest uppercase">
+              <span className="text-[10px] sm:text-xs text-white/25 font-light tracking-widest uppercase">
                 {galleryImages.length} momentos
               </span>
               <Heart
@@ -120,15 +118,15 @@ export default function Gallery() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mt-20"
+            className="text-center mt-16 sm:mt-20 pb-24 sm:pb-32"
           >
-            <div className="glass rounded-2xl p-8 max-w-md mx-auto">
+            <div className="glass rounded-2xl p-6 sm:p-8 max-w-md mx-auto">
               <Heart
-                className="w-6 h-6 text-lila-400/50 mx-auto mb-4"
+                className="w-5 h-5 sm:w-6 sm:h-6 text-lila-400/50 mx-auto mb-3 sm:mb-4"
                 fill="currentColor"
                 strokeWidth={0}
               />
-              <p className="text-white/40 text-sm font-light leading-relaxed italic">
+              <p className="text-white/40 text-xs sm:text-sm font-light leading-relaxed italic">
                 "Las fotos capturan momentos, pero el amor que sentimos no cabe en
                 ninguna imagen."
               </p>

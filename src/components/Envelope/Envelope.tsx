@@ -36,7 +36,7 @@ export default function Envelope({ onOpen, isOpen }: EnvelopeProps) {
             whileHover={{ scale: 1.06, y: -8 }}
             whileTap={{ scale: 0.97 }}
           >
-            <div className="relative w-64 h-44 md:w-80 md:h-56">
+            <div className="relative w-56 h-40 sm:w-64 sm:h-44 md:w-80 md:h-56">
               <div className="absolute inset-0 rounded-xl glass overflow-hidden shadow-[0_0_40px_rgba(204,93,232,0.15)]">
                 <div className="absolute inset-0 bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20" />
 
@@ -133,7 +133,7 @@ export default function Envelope({ onOpen, isOpen }: EnvelopeProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.6, ease: 'easeOut' }}
           >
-            <div className="absolute w-64 h-44 md:w-80 md:h-56 -top-4">
+            <div className="absolute w-56 h-40 sm:w-64 sm:h-44 md:w-80 md:h-56 -top-4">
               <div
                 className="absolute inset-0 rounded-xl overflow-hidden"
                 style={{

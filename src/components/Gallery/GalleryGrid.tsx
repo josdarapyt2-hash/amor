@@ -104,45 +104,29 @@ function ImageLightbox({
 
         </motion.div>
 
-        {hasPrev && (
-          <button
-            onClick={onPrev}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer hidden sm:flex"
-          >
-            &#8249;
-          </button>
-        )}
-
-        {hasNext && (
-          <button
-            onClick={onNext}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer hidden sm:flex"
-          >
-            &#8250;
-          </button>
-        )}
-
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer"
-        >
-          &times;
-        </button>
-
-        <div className="absolute bottom-4 inset-x-0 flex justify-center sm:hidden">
-          <div className="flex gap-2">
+        <div className="absolute bottom-4 inset-x-0 flex justify-center">
+          <div className="flex gap-3">
             {hasPrev && (
               <button
                 onClick={onPrev}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer"
+                className="btn btn-icon btn-md"
+                aria-label="Imagen anterior"
               >
                 &#8249;
               </button>
             )}
+            <button
+              onClick={onClose}
+              className="btn btn-icon btn-md"
+              aria-label="Cerrar lightbox"
+            >
+              &times;
+            </button>
             {hasNext && (
               <button
                 onClick={onNext}
-                className="w-10 h-10 rounded-full glass flex items-center justify-center text-white/70 hover:text-white transition-colors cursor-pointer"
+                className="btn btn-icon btn-md"
+                aria-label="Imagen siguiente"
               >
                 &#8250;
               </button>
@@ -175,11 +159,11 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
 
   return (
     <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {images.map((image, index) => (
           <motion.div
             key={index}
-            className="group relative rounded-2xl overflow-hidden cursor-pointer h-64 sm:h-72 lg:h-80"
+            className="group relative rounded-2xl overflow-hidden cursor-pointer h-56 sm:h-64 md:h-72 lg:h-80"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}

@@ -9,27 +9,19 @@ interface SectionNavProps {
 export default function SectionNav({ sections, activeIndex, onDotClick }: SectionNavProps) {
   return (
     <motion.nav
-      className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col items-end gap-3"
-      initial={{ opacity: 0, x: 20 }}
-      animate={{ opacity: 1, x: 0 }}
+      className="fixed left-6 bottom-20 z-40 hidden md:flex flex-row items-center gap-2"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 1.5, duration: 0.6 }}
+      aria-label="Navegación de secciones"
     >
       {sections.map((section, index) => (
         <button
           key={section}
           onClick={() => onDotClick(index)}
-          className="group flex items-center gap-3 cursor-pointer"
+          className="btn-dot group flex items-center gap-2"
           aria-label={`Ir a ${section}`}
         >
-          <span
-            className={`text-[10px] font-light tracking-widest uppercase transition-all duration-300 ${
-              activeIndex === index
-                ? 'opacity-100 text-white/70 translate-x-0'
-                : 'opacity-0 text-white/40 translate-x-2 group-hover:opacity-70 group-hover:translate-x-0'
-            }`}
-          >
-            {section}
-          </span>
           <div className="relative">
             <div
               className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -47,6 +39,15 @@ export default function SectionNav({ sections, activeIndex, onDotClick }: Sectio
               />
             )}
           </div>
+          <span
+            className={`text-[10px] font-light tracking-widest uppercase transition-all duration-300 ${
+              activeIndex === index
+                ? 'opacity-100 text-white/70'
+                : 'opacity-0 text-white/40 group-hover:opacity-70'
+            }`}
+          >
+            {section}
+          </span>
         </button>
       ))}
     </motion.nav>

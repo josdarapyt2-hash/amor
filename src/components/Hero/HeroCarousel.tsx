@@ -54,12 +54,12 @@ export default function HeroCarousel() {
         />
       </AnimatePresence>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {slides.map((_, i) => (
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={`h-1 rounded-full transition-all duration-500 cursor-pointer ${
+            className={`btn-dot h-1 rounded-full transition-all duration-500 ${
               i === current
                 ? 'w-8 bg-white/60'
                 : 'w-2 bg-white/20 hover:bg-white/30'

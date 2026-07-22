@@ -1,8 +1,10 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useMemo } from 'react'
 
 export function useImagePreloader(imageUrls: string[]) {
   const [loaded, setLoaded] = useState(false)
   const [progress, setProgress] = useState(0)
+
+  const urlsKey = useMemo(() => imageUrls.join(','), [imageUrls])
 
   const preload = useCallback(async () => {
     if (imageUrls.length === 0) {
@@ -27,17 +29,21 @@ export function useImagePreloader(imageUrls: string[]) {
 
     await Promise.all(promises)
     setLoaded(true)
-  }, [imageUrls])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [urlsKey])
 
   useEffect(() => {
     preload()
   }, [preload])
 
-  return { loaded, progress }
+  return { loaded, progress } as const
 }
 
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false)
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia(query).matches
+  })
 
   useEffect(() => {
     const media = window.matchMedia(query)

@@ -40,17 +40,17 @@ const SECTION_NAMES = ['Inicio', 'Tiempo', 'Palabras', 'Momentos', 'Promesas', '
 function CountdownBlock({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="glass rounded-xl w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
+      <div className="glass rounded-xl w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 flex items-center justify-center">
         <motion.span
           key={value}
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className="text-2xl md:text-3xl font-light text-white/90 tabular-nums"
+          className="text-xl sm:text-2xl md:text-3xl font-light text-white/90 tabular-nums"
         >
           {String(value).padStart(2, '0')}
         </motion.span>
       </div>
-      <span className="mt-2 text-[11px] md:text-xs text-white/40 font-light tracking-widest uppercase">
+      <span className="mt-2 text-[10px] sm:text-[11px] md:text-xs text-white/40 font-light tracking-widest uppercase">
         {label}
       </span>
     </div>
@@ -73,7 +73,7 @@ function useActiveSection(sectionCount: number) {
           }
         })
       },
-      { threshold: 0.4 },
+      { threshold: 0.3 },
     )
 
     sections.forEach((section) => observer.observe(section))
@@ -98,7 +98,7 @@ function HeroSection() {
     <motion.section
       ref={ref}
       data-section="0"
-      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6"
+      className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-5 sm:px-8"
       style={{ opacity }}
     >
       <HeroCarousel />
@@ -110,12 +110,12 @@ function HeroSection() {
           className="flex flex-col items-center"
         >
           <motion.div variants={fadeIn}>
-            <Sparkles className="w-6 h-6 text-lila-400/60 mb-4" />
+            <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-lila-400/60 mb-4 sm:mb-6" />
           </motion.div>
 
           <motion.h1
             variants={fadeInUp}
-            className="text-5xl sm:text-6xl md:text-8xl font-light tracking-tight mb-4 leading-[1.1]"
+            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-light tracking-tight mb-4 sm:mb-6 leading-[1.1]"
           >
             <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
               Nuestro
@@ -128,18 +128,18 @@ function HeroSection() {
 
           <motion.p
             variants={fadeInUp}
-            className="text-base md:text-xl text-white/50 font-light mb-4 leading-relaxed max-w-xl"
+            className="text-sm sm:text-base md:text-xl text-white/50 font-light mb-4 sm:mb-6 leading-relaxed max-w-xl px-4"
           >
             Un recorrido por los momentos más especiales que hemos vivido juntos.
           </motion.p>
 
-          <motion.div variants={fadeIn} className="flex items-center gap-2 mb-10">
-            <Heart className="w-3.5 h-3.5 text-lila-400" fill="currentColor" strokeWidth={0} />
-            <span className="text-sm text-white/30 font-light">Para ti, con amor</span>
-            <Heart className="w-3.5 h-3.5 text-lila-400" fill="currentColor" strokeWidth={0} />
+          <motion.div variants={fadeIn} className="flex items-center gap-2 mb-8 sm:mb-12">
+            <Heart className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-lila-400" fill="currentColor" strokeWidth={0} />
+            <span className="text-xs sm:text-sm text-white/30 font-light">Para ti, con amor</span>
+            <Heart className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-lila-400" fill="currentColor" strokeWidth={0} />
           </motion.div>
 
-          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-4 items-center">
+          <motion.div variants={fadeInUp} className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center">
             <RomanticButton href="/gallery" variant="primary">
               Explorar Galería
             </RomanticButton>
@@ -151,7 +151,7 @@ function HeroSection() {
         </motion.div>
 
         <motion.div
-          className="mt-16"
+          className="mt-12 sm:mt-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
@@ -162,7 +162,7 @@ function HeroSection() {
             className="flex flex-col items-center gap-2"
           >
             <span className="text-[10px] text-white/20 tracking-widest uppercase">Desliza</span>
-            <div className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent" />
+            <div className="w-px h-6 sm:h-8 bg-gradient-to-b from-white/20 to-transparent" />
           </motion.div>
         </motion.div>
       </motion.div>
@@ -174,7 +174,7 @@ function CountdownSection() {
   const { days, hours, minutes, seconds } = useTimeSince(ANNIVERSARY_DATE)
 
   return (
-    <section data-section="1" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <section data-section="1" className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 py-24 sm:py-32">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -184,23 +184,23 @@ function CountdownSection() {
       >
         <Star className="w-5 h-5 text-lila-400/50 mx-auto mb-6" />
 
-        <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-3">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-tight mb-3">
           <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
             Juntos Desde
           </span>
         </h2>
 
-        <p className="text-sm text-white/30 font-light mb-10 tracking-wide">
+        <p className="text-xs sm:text-sm text-white/30 font-light mb-10 sm:mb-12 tracking-wide">
           23 de junio, 2024
         </p>
 
-        <div className="flex gap-4 md:gap-6 justify-center items-center mb-12">
+        <div className="flex gap-3 sm:gap-4 md:gap-6 justify-center items-center mb-12 sm:mb-16">
           <CountdownBlock value={days} label="Días" />
-          <span className="text-white/20 text-2xl font-light mt-[-20px]">:</span>
+          <span className="text-white/20 text-xl sm:text-2xl font-light mt-[-20px]">:</span>
           <CountdownBlock value={hours} label="Horas" />
-          <span className="text-white/20 text-2xl font-light mt-[-20px]">:</span>
+          <span className="text-white/20 text-xl sm:text-2xl font-light mt-[-20px]">:</span>
           <CountdownBlock value={minutes} label="Min" />
-          <span className="text-white/20 text-2xl font-light mt-[-20px]">:</span>
+          <span className="text-white/20 text-xl sm:text-2xl font-light mt-[-20px]">:</span>
           <CountdownBlock value={seconds} label="Seg" />
         </div>
 
@@ -212,7 +212,7 @@ function CountdownSection() {
           transition={{ duration: 0.6, delay: 0.3 }}
         >
           <Music className="w-5 h-5 text-lila-400/60 mx-auto mb-3" />
-          <p className="text-white/50 text-sm font-light leading-relaxed italic">
+          <p className="text-white/50 text-xs sm:text-sm font-light leading-relaxed italic">
             "Cada día a tu lado es un regalo. Gracias por hacer de mi vida algo mágico."
           </p>
         </motion.div>
@@ -241,32 +241,32 @@ function MomentsSection() {
   ]
 
   return (
-    <section data-section="2" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <section data-section="2" className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 py-24 sm:py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-16"
+        className="text-center mb-12 sm:mb-16"
       >
-        <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-3">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-tight mb-3">
           <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
             Nuestra Historia
           </span>
         </h2>
-        <p className="text-sm text-white/30 font-light tracking-wide">
+        <p className="text-xs sm:text-sm text-white/30 font-light tracking-wide px-4">
           Momentos que definieron nuestra historia de amor
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 max-w-5xl w-full px-4">
         {moments.map((moment, index) => (
-          <GlowCard key={index} className="p-8 text-center">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20 flex items-center justify-center mx-auto mb-5 text-lila-400/70">
+          <GlowCard key={index} className="p-6 sm:p-8 text-center">
+            <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20 flex items-center justify-center mx-auto mb-4 sm:mb-5 text-lila-400/70">
               {moment.icon}
             </div>
-            <h3 className="text-lg font-medium text-white/80 mb-3">{moment.title}</h3>
-            <p className="text-sm text-white/40 font-light leading-relaxed">
+            <h3 className="text-base sm:text-lg font-medium text-white/80 mb-2 sm:mb-3">{moment.title}</h3>
+            <p className="text-xs sm:text-sm text-white/40 font-light leading-relaxed">
               {moment.description}
             </p>
           </GlowCard>
@@ -284,25 +284,25 @@ function PromiseSection() {
   ]
 
   return (
-    <section data-section="3" className="relative min-h-screen flex flex-col items-center justify-center px-6 py-20">
+    <section data-section="3" className="relative min-h-screen flex flex-col items-center justify-center px-5 sm:px-8 py-24 sm:py-32">
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-100px' }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-16"
+        className="text-center mb-12 sm:mb-16"
       >
-        <h2 className="text-3xl md:text-5xl font-light tracking-tight mb-3">
+        <h2 className="text-2xl sm:text-3xl md:text-5xl font-light tracking-tight mb-3">
           <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
             Mis Promesas
           </span>
         </h2>
-        <p className="text-sm text-white/30 font-light tracking-wide">
+        <p className="text-xs sm:text-sm text-white/30 font-light tracking-wide px-4">
           Palabras que salen del corazón
         </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 max-w-4xl w-full px-4">
         {promises.map((promise, index) => (
           <motion.div
             key={index}
@@ -310,14 +310,14 @@ function PromiseSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-50px' }}
             transition={{ duration: 0.5, delay: index * 0.15 }}
-            className="glass rounded-2xl p-6 text-center hover:bg-white/8 transition-all duration-500"
+            className="glass rounded-2xl p-5 sm:p-6 text-center hover:bg-white/8 transition-all duration-500"
             whileHover={{ y: -3 }}
           >
-            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20 flex items-center justify-center mx-auto mb-4">
-              <Heart className="w-5 h-5 text-lila-400/70" fill="currentColor" strokeWidth={0} />
+            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20 flex items-center justify-center mx-auto mb-3 sm:mb-4">
+              <Heart className="w-4 h-4 sm:w-5 sm:h-5 text-lila-400/70" fill="currentColor" strokeWidth={0} />
             </div>
-            <h4 className="text-white/80 font-medium text-sm mb-3">{promise.title}</h4>
-            <p className="text-white/40 text-sm font-light leading-relaxed italic">
+            <h4 className="text-white/80 font-medium text-xs sm:text-sm mb-2 sm:mb-3">{promise.title}</h4>
+            <p className="text-white/40 text-xs sm:text-sm font-light leading-relaxed italic">
               "{promise.text}"
             </p>
           </motion.div>
@@ -329,7 +329,7 @@ function PromiseSection() {
 
 function FooterSection() {
   return (
-    <section data-section="4" className="relative py-20 px-6">
+    <section data-section="4" className="relative py-24 sm:py-32 px-5 sm:px-8 pb-32 sm:pb-40">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -339,10 +339,10 @@ function FooterSection() {
       >
         <div className="w-px h-12 bg-gradient-to-b from-transparent via-lila-400/30 to-transparent mx-auto mb-8" />
         <Heart className="w-8 h-8 text-lila-400/40 mx-auto mb-4" fill="currentColor" strokeWidth={0} />
-        <p className="text-white/30 text-sm font-light">
+        <p className="text-white/30 text-xs sm:text-sm font-light">
           Hecho con amor, para el amor
         </p>
-        <p className="text-white/20 text-xs font-light mt-2">
+        <p className="text-white/20 text-[10px] sm:text-xs font-light mt-2">
           Nuestro aniversario &mdash; una celebración de lo que somos
         </p>
       </motion.div>

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, memo, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { Heart } from 'lucide-react'
 
@@ -8,8 +8,12 @@ interface PromiseCardProps {
   index: number
 }
 
-export default function PromiseCard({ title, text, index }: PromiseCardProps) {
+function PromiseCardInner({ title, text, index }: PromiseCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
+
+  const toggle = useCallback(() => {
+    setIsFlipped((prev) => !prev)
+  }, [])
 
   return (
     <motion.div
@@ -18,7 +22,16 @@ export default function PromiseCard({ title, text, index }: PromiseCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.15 }}
-      onClick={() => setIsFlipped(!isFlipped)}
+      onClick={toggle}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault()
+          toggle()
+        }
+      }}
+      aria-label={isFlipped ? `Ocultar promesa: ${title}` : `Revelar promesa: ${title}`}
     >
       <motion.div
         className="relative w-full h-full"
@@ -32,7 +45,7 @@ export default function PromiseCard({ title, text, index }: PromiseCardProps) {
           style={{ backfaceVisibility: 'hidden' }}
         >
           <div className="w-10 h-10 rounded-full bg-gradient-to-br from-lila-500/20 to-deep-blue-500/20 flex items-center justify-center mb-4">
-            <Heart className="w-5 h-5 text-lila-400/70" fill="currentColor" strokeWidth={0} />
+            <Heart className="w-5 h-5 text-lila-400/70" fill="currentColor" strokeWidth={0} aria-hidden="true" />
           </div>
           <h4 className="text-white/80 font-medium text-sm mb-2">{title}</h4>
           <p className="text-white/30 text-xs font-light">Toca para revelar</p>
@@ -54,3 +67,6 @@ export default function PromiseCard({ title, text, index }: PromiseCardProps) {
     </motion.div>
   )
 }
+
+const PromiseCard = memo(PromiseCardInner)
+export default PromiseCard

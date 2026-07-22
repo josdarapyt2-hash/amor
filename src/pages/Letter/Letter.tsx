@@ -90,18 +90,18 @@ function LetterContent() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: 'easeOut' }}
     >
-        <div className="glass rounded-3xl p-6 md:p-10 lg:p-12 max-w-2xl mx-auto relative overflow-hidden">
+      <div className="glass rounded-3xl p-5 sm:p-6 md:p-10 lg:p-12 max-w-2xl mx-auto relative overflow-hidden">
         <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-lila-400/30 to-transparent" />
 
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex items-center gap-2">
             <Heart className="w-4 h-4 text-lila-400" fill="currentColor" strokeWidth={0} />
-            <span className="text-xs text-white/30 font-light tracking-widest uppercase">Carta de amor</span>
+            <span className="text-[10px] sm:text-xs text-white/30 font-light tracking-widest uppercase">Carta de amor</span>
           </div>
           {!skipped && currentParagraph < letterContent.length && (
             <button
               onClick={handleSkip}
-              className="text-[10px] text-white/25 hover:text-white/50 font-light tracking-wider uppercase transition-colors cursor-pointer"
+              className="btn btn-ghost btn-sm"
             >
               Saltar
             </button>
@@ -110,21 +110,21 @@ function LetterContent() {
 
         <div
           ref={containerRef}
-          className="space-y-6 max-h-[50vh] overflow-y-auto pr-2 scrollbar-thin text-center"
+          className="space-y-5 sm:space-y-6 max-h-[50vh] overflow-y-auto pr-2 scrollbar-thin text-center"
         >
           {completedParagraphs.map((pIndex) => (
             <motion.p
               key={pIndex}
               initial={{ opacity: 0.8 }}
               animate={{ opacity: 1 }}
-              className="text-white/60 text-sm md:text-base font-light leading-relaxed"
+              className="text-white/60 text-xs sm:text-sm md:text-base font-light leading-relaxed"
             >
               {letterContent[pIndex]}
             </motion.p>
           ))}
 
           {currentParagraph < letterContent.length && !completedParagraphs.includes(currentParagraph) && (
-            <p className="text-white/70 text-sm md:text-base font-light leading-relaxed">
+            <p className="text-white/70 text-xs sm:text-sm md:text-base font-light leading-relaxed">
               <TypewriterText
                 text={letterContent[currentParagraph]}
                 onComplete={handleParagraphComplete}
@@ -141,9 +141,9 @@ function LetterContent() {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="text-center mt-8 pt-6 border-t border-white/5"
+              className="text-center mt-6 sm:mt-8 pt-5 sm:pt-6 border-t border-white/5"
             >
-              <p className="text-white/50 text-sm font-light italic">
+              <p className="text-white/50 text-xs sm:text-sm font-light italic">
                 Con todo mi amor, siempre tuyo
               </p>
               <Heart className="w-5 h-5 text-lila-400/60 mx-auto mt-3" fill="currentColor" strokeWidth={0} />
@@ -178,13 +178,12 @@ export default function Letter() {
       <BackToTop />
 
       <div className="relative z-10 min-h-screen flex flex-col">
-        <MusicPlayer position="top-right" />
-        <div className="px-6 py-10 max-w-3xl mx-auto w-full">
+        <div className="px-5 sm:px-8 pt-10 sm:pt-14 max-w-3xl mx-auto w-full">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="mb-8"
+            className="mb-8 text-center sm:text-left"
           >
             <RomanticButton href="/" variant="secondary">
               <ArrowLeft className="w-4 h-4" />
@@ -193,20 +192,20 @@ export default function Letter() {
           </motion.div>
         </div>
 
-        <div className="flex-1 flex flex-col items-center justify-center px-6 pb-16">
+        <div className="flex-1 flex flex-col items-center justify-center px-5 sm:px-8 pb-28 sm:pb-32">
           <motion.div
             variants={staggerContainer}
             initial="hidden"
             animate="visible"
-            className="text-center mb-6"
+            className="text-center mb-6 sm:mb-8"
           >
             <motion.div variants={fadeInUp}>
-              <Mail className="w-8 h-8 text-lila-400/60 mx-auto mb-5" />
+              <Mail className="w-7 h-7 sm:w-8 sm:h-8 text-lila-400/60 mx-auto mb-4 sm:mb-5" />
             </motion.div>
 
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl sm:text-5xl md:text-6xl font-light tracking-tight mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light tracking-tight mb-3 sm:mb-4"
             >
               <span className="bg-gradient-to-r from-white via-lila-200 to-lila-400 bg-clip-text text-transparent">
                 Una Carta Para Ti
@@ -215,7 +214,7 @@ export default function Letter() {
 
             <motion.p
               variants={fadeInUp}
-              className="text-white/40 font-light max-w-md mx-auto"
+              className="text-xs sm:text-sm md:text-base text-white/40 font-light max-w-md mx-auto px-4"
             >
               Palabras escritas desde lo más profundo de mi corazón
             </motion.p>
@@ -259,6 +258,10 @@ export default function Letter() {
               </motion.div>
             )}
           </AnimatePresence>
+        </div>
+
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40">
+          <MusicPlayer position="relative" />
         </div>
       </div>
     </AnimatedPage>

@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useCallback, memo } from 'react'
 import { motion } from 'framer-motion'
 
 interface GlowCardProps {
@@ -6,19 +6,22 @@ interface GlowCardProps {
   className?: string
 }
 
-export default function GlowCard({ children, className = '' }: GlowCardProps) {
+function GlowCardInner({ children, className = '' }: GlowCardProps) {
   const cardRef = useRef<HTMLDivElement>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
-    const rect = cardRef.current.getBoundingClientRect()
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    })
-  }
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      setMousePos({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      })
+    },
+    [],
+  )
 
   return (
     <motion.div
@@ -47,3 +50,6 @@ export default function GlowCard({ children, className = '' }: GlowCardProps) {
     </motion.div>
   )
 }
+
+const GlowCard = memo(GlowCardInner)
+export default GlowCard

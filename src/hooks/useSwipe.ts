@@ -39,22 +39,27 @@ export function useSwipe({
     [onSwipeLeft, onSwipeRight, onSwipeUp, threshold],
   )
 
-  return { onTouchStart, onTouchEnd }
+  return { onTouchStart, onTouchEnd } as const
 }
 
-export function useKeyboardNav(handlers: {
+interface KeyboardNavHandlers {
   onEscape?: () => void
   onArrowLeft?: () => void
   onArrowRight?: () => void
-}) {
+}
+
+export function useKeyboardNav(handlers: KeyboardNavHandlers) {
+  const handlersRef = useRef(handlers)
+  handlersRef.current = handlers
+
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') handlers.onEscape?.()
-      if (e.key === 'ArrowLeft') handlers.onArrowLeft?.()
-      if (e.key === 'ArrowRight') handlers.onArrowRight?.()
+      if (e.key === 'Escape') handlersRef.current.onEscape?.()
+      if (e.key === 'ArrowLeft') handlersRef.current.onArrowLeft?.()
+      if (e.key === 'ArrowRight') handlersRef.current.onArrowRight?.()
     }
 
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
-  }, [handlers])
+  }, [])
 }
