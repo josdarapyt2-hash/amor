@@ -17,7 +17,7 @@ import { staggerContainer, fadeInUp } from '@/animations/variants'
 const letterContent = [
   'Hoy celebramos dos años y un mes juntos, y quiero que sepas que cada día a tu lado ha sido el regalo más hermoso que la vida me ha dado.',
   'Recuerdo perfectamente el momento en que te conocí. Algo en ti me atrajo de una forma que no puedo describir con palabras. Era como si el universo hubiera conspirado para que nuestros caminos se cruzaran.',
-  'Desde entonces, cada sunrise, cada lluvia, cada risa compartida se ha convertido en un tesoro que guardo en lo más profundo de mi corazón.',
+  'Desde entonces, cada sonrisa, cada lluvia, cada risa compartida se ha convertido en un tesoro que guardo en lo más profundo de mi corazón.',
   'Gracias por tu paciencia, por tu ternura, por cada abrazo que hace que el mundo entero desaparezca. Gracias por ser mi refugio y mi aventura favorita.',
   'No necesito grandes gestos ni regalos costosos. Solo necesito tu mano en la mía, tus ojos mirándome, y saber que este amor que construimos es real y eterno.',
   'Por todos los momentos vividos, por los que están por venir, y por el infinito que construiremos juntos: te amo, hoy y siempre.',
